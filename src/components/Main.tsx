@@ -16,7 +16,8 @@ interface MainState {
 
 }
 
-class Main extends React.Component<MainProps, MainState>{
+type Props = MainProps & LinkDispatchProps & LinkStateProp
+class Main extends React.Component<Props, MainState>{
   render() {
     return (
       <div>
@@ -27,18 +28,18 @@ class Main extends React.Component<MainProps, MainState>{
 };
 
 interface LinkStateProp {
-  podcasts: Podcast[]
+  podcasts: Podcast[];
 };
 
 interface LinkDispatchProps {
-  removeSinglePodcast: (id: string) => void;
-}
+  removePodcast: (id: string) => void;
+};
 
-const mapStateToProps = (state: AppState, ownProps: MainProps) => ({
-  prodcasts: state.podcasts
+const mapStateToProps = (state: AppState, ownProps: MainProps): LinkStateProp => ({
+  podcasts: state.podcasts
 });
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>, ownProps: MainProps) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>, ownProps: MainProps): LinkDispatchProps => ({
   removePodcast: bindActionCreators(removeSinglePodcast, dispatch)
 
 })
