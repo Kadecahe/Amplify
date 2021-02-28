@@ -3,26 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+// import { ApolloClient, ApolloProvider, InMemoryCache, gql } from '@apollo/client';
 import {Provider} from 'react-redux'
 import { store } from './store';
 
-const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
-  cache: new InMemoryCache()
-});
+// const client = new ApolloClient({
+//   uri: 'https://48p1r2roz4.sse.codesandbox.io',
+//   cache: new InMemoryCache()
+// });
 
-client
-  .query({
-    query: gql`
-      query GetRates {
-        rates(currency: "USD"){
-          currency
-        }
-      }
-    `
-  })
-  .then(result => console.log(result))
+// client
+//   .query({
+//     query: gql`
+//       query GetRates {
+//         rates(currency: "USD") {
+//           currency
+//         }
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
 
 ReactDOM.render(
     <Provider store={store}>

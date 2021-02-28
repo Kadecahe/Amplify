@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "noUnusedLocals": false
+  },
+  "exclude": ["node_modules"],
+  "include": ["routes/**/*", "server.ts"]
+}

@@ -1,14 +1,14 @@
 import { Dispatch } from "redux";
-import { AppActions, SET_PODCASTS, REMOVE_PODCAST } from "../types/actions";
+import { AppActions, SET_LOCAL_PODCASTS, REMOVE_LOCAL_PODCASTS } from "../types/actions";
 import { Podcast } from "../types/Podcast";
 
-export const setPodcasts = ( podcasts: Podcast[] ): AppActions => ({
-  type: SET_PODCASTS,
+export const setLocalPodcasts = ( podcasts: Podcast[] ): AppActions => ({
+  type: SET_LOCAL_PODCASTS,
   podcasts
 })
 
-export const removePodcast = ( id: string ): AppActions => ({
-  type: REMOVE_PODCAST,
+export const removeLocalPodcast = ( id: string ): AppActions => ({
+  type: REMOVE_LOCAL_PODCASTS,
   id
 })
 
@@ -26,9 +26,9 @@ export const removePodcast = ( id: string ): AppActions => ({
 //   }
 // }
 
-export const removeSinglePodcast = (id: string) => {
+export const removePodcastLocal = (id: string) => {
   return (dispatch: Dispatch<AppActions>) => {
-    dispatch(removePodcast(id))
+    dispatch(removeLocalPodcast(id))
   }
 }
 

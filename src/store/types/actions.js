@@ -1,0 +1,11 @@
+"use strict";
+exports.__esModule = true;
+exports.REMOVE_LOCAL_PODCASTS = exports.SET_LOCAL_PODCASTS = exports.REMOVE_PODCAST = exports.SET_PODCASTS = void 0;
+exports.SET_PODCASTS = 'SET_PODCASTS';
+exports.REMOVE_PODCAST = 'REMOVE_PODCAST';
+exports.SET_LOCAL_PODCASTS = 'SET_LOCAL_PODCASTS';
+exports.REMOVE_LOCAL_PODCASTS = 'REMOVE_LOCAL_PODCASTS';
+;
+;
+;
+;
