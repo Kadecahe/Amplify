@@ -1,13 +1,18 @@
 const { db } = require('./db/db');
+//Setting thee following two up for the graphQL ide
+const schema  = require('./graphql/schema')
+const { ApolloServer } = require(`apollo-server-express`)
+// const postgraphql = require(`postgraphql`).postgraphql
 const PORT = 8080;
 const path = require('path')
 const morgan = require('morgan')
 const express = require('express');
-
+const cors = require('cors');
 const app = express();
 
 function createApp() {
 
+  app.use(cors());
 
   app.use(morgan('dev'));
 
@@ -16,10 +21,17 @@ function createApp() {
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
+  //Mounted on /graphql
+  const server = new ApolloServer({schema});
+  server.applyMiddleware({app})
+
+  app.use('/api', require('./api'))
   //Starting up the server
   app.get('/api/ping', (req, res, next) => {
     res.send('pong')
   })
+
+  // app.use(postgraphql('postgres://localhost:5432', 'public', {graphiql: true}))
 
   //404 error handling
   app.use((req, res, next) => {

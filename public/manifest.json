@@ -1,6 +1,6 @@
 {
   "short_name": "Amplify",
-  "name": "Amplify Podcasts Everywhere You Go",
+  "name": "Amplify Podcasts",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "apple-touch-icon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
