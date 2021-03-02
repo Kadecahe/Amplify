@@ -1,3 +1,25 @@
+# Features
+
+To avoid using Redux to make asyncronous calls when fetching data through REST APIS, I connected this React application with the Apollo Client. The Apollo client gives the application access to the queries and mutations that are connected on the serverside through GraphQL APIs. My goal is to reduce over fetching with GraphQL and make the application faster by tapping into Apollo Client's cache.
+            Client                                          Server
++-------------------------+                       +-------------------------+
+|          React          |                       |           Node          |
+|     Single Page App     |                       | +---------------------+ |
+| +---------------------+ |                       | |        Express      | |
+| |        Redux        | |                       | |      Middleware     | |
+| |      Local Data     | |                       | |    Appollo Server   | |
+| | +-----------------+ | |                       | +---------------------+ |
+| | |                 | | |                       |                         |
+| | |  Apollo Client  | | |                       | +---------------------+ |
+| | |   Remote Data   | | |                       | |         ORM         | |
+| | +-----------------+ | |                       | |      Sequelize      | |
+| |                     | |                       | |       GraphQL       | |
+| +---------------------+ |                       | +---------------------+ |
+|                         |                       |                         |
++-------------------------+                       +-------------------------+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

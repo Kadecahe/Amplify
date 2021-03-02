@@ -17,23 +17,23 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-client
-  .query({
-    query: gql`
-      query {
-        getPodcasts{
-          id
-          name
-          description
-          source
-          audio
-          image
-          title
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query {
+//         getPodcasts{
+//           id
+//           name
+//           description
+//           source
+//           audio
+//           image
+//           title
+//         }
+//       }
+//     `
+//   })
+//   .then(result => console.log(result));
 
 
 ReactDom.render(
