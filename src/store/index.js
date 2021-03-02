@@ -1,10 +1,11 @@
-"use strict";
-exports.__esModule = true;
-exports.store = exports.reducer = void 0;
-var redux_1 = require("redux");
-var redux_thunk_1 = require("redux-thunk");
-var podcasts_1 = require("./reducers/podcasts");
-exports.reducer = redux_1.combineReducers({
-    podcasts: podcasts_1.podcastReducer
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunkMiddleware, {ThunkMiddleware}from 'redux-thunk';
+import { podcastReducer } from './reducers/podcasts'
+import { AppActions} from './types/actions'
+export const reducer = combineReducers({
+  podcasts: podcastReducer
 });
-exports.store = redux_1.createStore(exports.reducer, redux_1.applyMiddleware(redux_thunk_1["default"]));
+
+//Grabs the all types of the main reducer and uses it as the state for the app
+
+export const store = createStore(reducer, applyMiddleware(thunkMiddleware));

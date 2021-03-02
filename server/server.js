@@ -21,9 +21,14 @@ function createApp() {
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
+  const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true
+  };
+
   //Mounted on /graphql
   const server = new ApolloServer({schema});
-  server.applyMiddleware({app})
+  server.applyMiddleware({app, cors: corsOptions})
 
   app.use('/api', require('./api'))
   //Starting up the server
@@ -32,6 +37,10 @@ function createApp() {
   })
 
   // app.use(postgraphql('postgres://localhost:5432', 'public', {graphiql: true}))
+
+  app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+  })
 
   //404 error handling
   app.use((req, res, next) => {
