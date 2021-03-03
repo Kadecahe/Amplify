@@ -1,6 +1,7 @@
 import React from 'react';
+//
 
-const AllPodcasts = (props) => {
+const AllPodcasts = () => {
   return (
     <div>
       <h1>
