@@ -2,7 +2,7 @@
 
 To avoid using Redux to make asyncronous calls when fetching data through REST APIS, I connected this React application with the Apollo Client. The Apollo client gives the application access to the queries and mutations that are connected on the serverside through GraphQL APIs. My goal is to reduce over fetching with GraphQL and make the application faster by tapping into Apollo Client's cache.
 
-![Alt text](public/Amplify Stack.png "Amplify Stack")
+![Amplify Tech Stack](https://github.com/Kadecahe/Amplify/blob/main/public/Amplify%20Stack.png?raw=true)
 
 
 
