@@ -61,7 +61,7 @@ function seed() {
                             description: "The Dirt Show is a podcast hosted by the team behind the UX design agency, Fresh Tilled Soil. One cool thing about this podcast is some topics follow a mini-series format, with multiple episodes and different guests talking about the same topic. For example, they have a mini-series on topics such as \"designing your career\" and \"designing the future\".",
                             source: "http://www.freshtilledsoil.com/category/podcast/",
                             audio: "http://traffic.libsyn.com/thedirt/James_Aylward_-_Final.mp3",
-                            image: "",
+                            image: "https://cdn-images-1.listennotes.com/podcasts/the-dirt-fresh-tilled-soil-NltidraUxJy.1400x1400.jpg",
                             title: "Data-Driven Design with James Aylward of Pluralsight"
                         },
                         {
@@ -93,7 +93,7 @@ function seed() {
                             description: "A discovery session is an opportunity to learn about a relevant topic, generate ideas that expand a new technique or practice, or brainstorm concepts and ideas for the next new thing.",
                             source: "http://uxdiscoverysession.com/",
                             audio: "http://traffic.libsyn.com/discoverysession/UXDS071_Di_Dang_New_Technologies_Design_Advocate_at_Google.mp3",
-                            image: "",
+                            image: "https://i1.sndcdn.com/artworks-000409419690-fyfmy9-t500x500.jpg",
                             title: "Di Dang, New Technologies Design Advocate at Google"
                         },
                         {
