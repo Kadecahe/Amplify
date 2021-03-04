@@ -121,7 +121,10 @@ nav a:hover{
   border-bottom-color: #fefefe;
 
 }
-
+/*
+.scroll{
+  overflow-y: scroll;
+} */
 
 @-webkit-keyframes color {
   0%  {color: #000;}

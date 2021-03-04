@@ -7,12 +7,12 @@ export const setPodcasts = (podcasts: Podcast[]): AppActions => ({
   podcasts,
 });
 
-export const removePodcast = (id: string): AppActions => ({
+export const removePodcast = (id: number): AppActions => ({
   type: REMOVE_PODCAST,
   id,
 });
 
-export const removeSinglePodcast = (id: string) => {
+export const removeSinglePodcast = (id: number) => {
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(removePodcast(id));
   };

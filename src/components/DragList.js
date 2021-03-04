@@ -7,6 +7,8 @@ import {
   setLocalPodcasts,
 } from '../store/actions/localPodcasts';
 import { PodcastList, RemotePodcast } from './index';
+import { v4 as uuidv4 } from 'uuid';
+
 
 class DragList extends React.Component {
   constructor(props) {
@@ -14,19 +16,37 @@ class DragList extends React.Component {
 
     this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
+  //the draggable id needs to be different.
   handleOnDragEnd(result) {
-    if (!result.destination) return;
+    // if(result.destination.droppableId && !result.destination) {
+    //   this.props.remotePodcasts(result.source.index)
+    // }
+
+    if (!result.destination) {
+      if(result.source.droppableId === 'local') {
+        console.log(result.source.index)
+        this.props.removeLocalPodcast(result.source.index);
+      }
+      return;
+    }
+
     let remotePodcasts = JSON.parse(JSON.stringify(this.props.podcasts));
     let [movedPodcast] = remotePodcasts.splice(result.source.index, 1);
+
     if (result.destination.droppableId === result.source.droppableId) {
       let originalPodcasts = JSON.parse(JSON.stringify(this.props.localPodcasts));
       let [reorderedPodcast] = originalPodcasts.splice(result.source.index, 1);
-      if (!reorderedPodcast.id) return;
+      // if (!reorderedPodcast.id) return; <- gave an error
       originalPodcasts.splice(result.destination.index, 0, reorderedPodcast);
       this.props.setLocalPodcast(originalPodcasts);
     } else if (this.props.localPodcasts.includes(movedPodcast)) {
       return;
     } else {
+      //Let's warn the user if they try to add the same podcast twice
+      if(this.props.localPodcasts[result.destination.index]) {
+        alert('This podcast is already in your saved collection')
+        return
+      }
       this.props.addLocalPodcast(movedPodcast);
       return;
     }

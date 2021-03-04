@@ -17,10 +17,9 @@ var localPodcastReducer = function (state, action) {
         case actions_1.ADD_LOCAL_PODCASTS:
             return __spreadArray(__spreadArray([], state), [action.podcast]);
         case actions_1.REMOVE_LOCAL_PODCASTS:
-            return state.filter(function (_a) {
-                var id = _a.id;
-                return id !== action.id;
-            });
+            var newState = __spreadArray([], state);
+            newState.splice(action.id, 1);
+            return newState;
         default:
             return state;
     }

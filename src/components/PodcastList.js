@@ -5,8 +5,8 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlaying }) => {
 
+const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlaying }) => {
   return (
     <div style={{ minWidth: '600px' }}>
       <Droppable droppableId="local">
@@ -21,7 +21,7 @@ const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlayin
                 localPodcasts.map((podcast, index) => (
                   <Draggable
                     key={podcast.id}
-                    draggableId={podcast.name}
+                    draggableId={`${podcast.name}`}
                     index={index}
                   >
                     {provided => (

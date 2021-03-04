@@ -13,7 +13,7 @@ export interface SetPodcastAction {
 
 export interface RemovePodcastAction {
   type: typeof REMOVE_PODCAST;
-  id: string;
+  id: number;
 }
 
 export interface SetLocalPodcastAction {
@@ -28,7 +28,7 @@ export interface AddLocalPodcastAction {
 
 export interface RemoveLocalPodcastAction {
   type: typeof REMOVE_LOCAL_PODCASTS;
-  id: string;
+  id: number;
 }
 
 export type PodcastActionTypes =

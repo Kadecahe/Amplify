@@ -19,7 +19,9 @@ const localPodcastReducer = (
     case ADD_LOCAL_PODCASTS:
       return [...state, action.podcast];
     case REMOVE_LOCAL_PODCASTS:
-      return state.filter(({ id }) => id !== action.id);
+      let newState = [...state];
+      newState.splice(action.id, 1)
+      return newState;
     default:
       return state;
   }

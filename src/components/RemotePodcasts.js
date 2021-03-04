@@ -13,14 +13,14 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlayin
         {provided => (
           <div>
             <div
-              className="d-flex flex-column"
+              className="d-flex flex-column scroll"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {allPodcasts.map((podcast, index) => (
                 <Draggable
                   key={podcast.id}
-                  draggableId={podcast.name}
+                  draggableId={podcast.title}
                   index={index}
                 >
                   {provided => (

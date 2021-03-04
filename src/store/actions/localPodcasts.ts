@@ -12,12 +12,12 @@ export const addLocalPodcast = ( podcast: Podcast ): AppActions => ({
   podcast
 })
 
-export const removeLocalPodcast = ( id: string ): AppActions => ({
+export const removeLocalPodcast = ( id: number ): AppActions => ({
   type: REMOVE_LOCAL_PODCASTS,
   id
 })
 
-export const removePodcastLocal = (id: string) => {
+export const removePodcastLocal = (id: number) => {
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(removeLocalPodcast(id))
   }
