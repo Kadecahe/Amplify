@@ -91,7 +91,7 @@
 .scroller span {
   display: block;
   font-size: 200%;
-  color: #000000;
+  color: #fefefe;
   font-weight: bold;
 }
 
@@ -107,6 +107,21 @@
 .zoom:hover {
   transform: scale(1.01);
 }
+
+nav a{
+  color: #fefefe;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin: 1em;
+
+}
+
+nav a:hover{
+  color: #fefefe;
+  border-bottom-color: #fefefe;
+
+}
+
 
 @-webkit-keyframes color {
   0%  {color: #000;}

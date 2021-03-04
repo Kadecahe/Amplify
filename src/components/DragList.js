@@ -56,7 +56,7 @@ class DragList extends React.Component {
             maxWidth: '600px',
             minWidth: '600px',
             borderStyle: 'solid',
-            borderColor: '#00A0EE',
+            borderColor: '#3668ff',
           }}
           className="m-3 rounded shadow"
         >
