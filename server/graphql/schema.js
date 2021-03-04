@@ -1,6 +1,13 @@
-const { resolver } = require('graphql-sequelize')
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLNonNull, GraphQLList } = require('graphql')
-const { PodcastModel } = require('../db/models/podcast')
+const { resolver } = require('graphql-sequelize');
+const {
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLInt,
+  GraphQLNonNull,
+  GraphQLList,
+} = require('graphql');
+const { PodcastModel } = require('../db/models/podcast');
 
 //Define Podcast type
 const podcastType = new GraphQLObjectType({
@@ -35,8 +42,8 @@ const podcastType = new GraphQLObjectType({
       type: GraphQLString,
       description: 'The title of the podcast.',
     },
-  }
-})
+  },
+});
 
 //schema
 const schema = new GraphQLSchema({
@@ -45,18 +52,18 @@ const schema = new GraphQLSchema({
     fields: {
       getPodcasts: {
         type: new GraphQLList(podcastType),
-        resolve: resolver(PodcastModel)
+        resolve: resolver(PodcastModel),
       },
       getOnePodcast: {
         type: podcastType,
         args: {
           id: {
             description: 'id of the podcast',
-            type: new GraphQLNonNull(GraphQLInt)
-          }
-        }
-      }
-    }
+            type: new GraphQLNonNull(GraphQLInt),
+          },
+        },
+      },
+    },
   }),
   mutation: new GraphQLObjectType({
     name: 'createPodcast',
@@ -90,15 +97,13 @@ const schema = new GraphQLSchema({
           },
         },
         resolve: (root, podcast, info) => {
-          return PodcastModel.create(podcast)
-            .catch(err => {
-              return Promise.reject(err)
-            })
-        }
-      }
-    }
-  })
+          return PodcastModel.create(podcast).catch(err => {
+            return Promise.reject(err);
+          });
+        },
+      },
+    },
+  }),
+});
 
-})
-
-module.exports = schema
+module.exports = schema;

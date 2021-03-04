@@ -2,7 +2,6 @@
 exports.__esModule = true;
 exports.PodcastModel = void 0;
 var sequelize_1 = require("sequelize");
-// import {PodcastAttributes} from '../types/db';
 var db_1 = require("../db");
 exports.PodcastModel = db_1.db.define('Podcast', {
     id: {

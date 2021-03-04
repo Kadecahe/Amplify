@@ -48,6 +48,9 @@
 
 #container p {
   font-size: 1.1rem;
-  font-family: 'Space Mono', monospace;
   text-align: left;
+}
+
+#container span {
+  font-weight: bold;
 }

@@ -1,11 +1,6 @@
 import React from 'react';
 import { Howl } from 'howler';
-import { Button, Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPauseCircle, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import {PodcastList, DragList} from '../index';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
+import { DragList } from '../index';
 
 class Player extends React.Component {
   constructor(props) {
@@ -55,53 +50,17 @@ class Player extends React.Component {
     this.state.howl.pause();
     this.setState({ isPlaying: false });
   }
-
-  onDragEnd(result) {
-    // if item dropped outside the list change the return to remove from the list
-    if (!result.destination) {
-        return;
-    }
-  }
-
   render() {
     let tracks = this.props.allPodcasts || [];
     if (!tracks.length) return <h3>Loading</h3>;
     if (tracks.length) {
       return (
         <div className="player d-flex justify-content-center">
-          <DragList playPodcast={this.playPodcast}
-                  pausePodcast={this.pausePodcast}
-                  audio={this.state.audio}/>
-              {/* <div
-                style={{
-                  maxWidth: '50%',
-                  borderStyle: 'solid',
-                  borderColor: '#00A0EE',
-                }}
-                className="m-3 rounded shadow"
-              >
-                <PodcastList
-                  playPodcast={this.playPodcast}
-                  pausePodcast={this.pausePodcast}
-                  audio={this.state.audio}
-                />
-              </div> */}
-              {/* <div
-                style={{
-                  maxWidth: '50%',
-                  minWidth: '600px',
-                  borderStyle: 'solid',
-                  borderColor: '#00A0EE',
-                }}
-                className="m-3 rounded shadow"
-              >
-                <PodcastList
-                  playPodcast={this.playPodcast}
-                  pausePodcast={this.pausePodcast}
-                  audio={this.state.audio}
-                  local={true}
-                />
-              </div> */}
+          <DragList
+            playPodcast={this.playPodcast}
+            pausePodcast={this.pausePodcast}
+            audio={this.state.audio}
+          />
         </div>
       );
     }

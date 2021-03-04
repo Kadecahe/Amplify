@@ -5,11 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
-import { ApolloClient, ApolloProvider, InMemoryCache, gql } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import {Provider} from 'react-redux'
 import { store } from './store';
-import {Router} from 'react-router-dom'
-import history from './history'
 
 
 const client = new ApolloClient({
@@ -17,31 +15,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// client
-//   .query({
-//     query: gql`
-//       query {
-//         getPodcasts{
-//           id
-//           name
-//           description
-//           source
-//           audio
-//           image
-//           title
-//         }
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
-
-
 ReactDom.render(
   <ApolloProvider client={client}>
     <Provider store={store}>
-      <Router history={history}>
         <App />
-      </Router>
     </Provider>
   </ApolloProvider>,
   document.getElementById('root')

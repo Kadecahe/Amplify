@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const {PodcastModel} = require('../db/models/podcast')
+const { PodcastModel } = require('../db/models/podcast');
 module.exports = router;
 
 //Get /api/podcast for REST APIs
 router.get('/', async (req, res, next) => {
-  try{
+  try {
     const podcasts = await PodcastModel.findAll();
     res.send(podcasts);
-  } catch(err) {
-    next(err)
+  } catch (err) {
+    next(err);
   }
-})
+});
