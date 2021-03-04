@@ -13,7 +13,6 @@ class Player extends React.Component {
 
     this.playPodcast = this.playPodcast.bind(this);
     this.pausePodcast = this.pausePodcast.bind(this);
-    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   playPodcast(audio) {
