@@ -1,4 +1,4 @@
-import {Howl} from 'howler'
+import { Howl } from 'howler';
 var Radio = function(podcasts, radio) {
   var self = this;
 

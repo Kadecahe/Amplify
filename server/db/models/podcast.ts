@@ -1,5 +1,4 @@
 import { Optional, DataTypes, Model } from 'sequelize';
-// import {PodcastAttributes} from '../types/db';
 import { db } from '../db';
 
 export interface PodcastAttributes {
