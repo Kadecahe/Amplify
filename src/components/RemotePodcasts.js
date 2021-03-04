@@ -5,7 +5,7 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio }) => {
+const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlaying }) => {
   if (!allPodcasts.length) return <h3>Loading</h3>;
   return (
     <div>
@@ -25,7 +25,7 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio }) => {
                 >
                   {provided => (
                     <Card
-                      className="shadow m-3"
+                      className="shadow m-3 zoom"
                       border="light"
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
@@ -47,17 +47,11 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio }) => {
                           <Card.Text>{podcast.description}</Card.Text>
                         </div>
                         <div>
-                          {!(audio === podcast.audio) ? (
                             <FontAwesomeIcon
-                              icon={faPlayCircle}
-                              onClick={() => playPodcast(podcast.audio)}
+                              icon={(audio === podcast.audio) && isPlaying? faPauseCircle : faPlayCircle}
+                              onClick={(audio === podcast.audio) && isPlaying ? () => pausePodcast() : () => playPodcast(podcast.audio) }
                             />
-                          ) : (
-                            <FontAwesomeIcon
-                              icon={faPauseCircle}
-                              onClick={() => pausePodcast(podcast.audio)}
-                            />
-                          )}
+
                         </div>
                       </Card.Body>
                     </Card>

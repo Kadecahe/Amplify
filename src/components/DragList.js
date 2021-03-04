@@ -16,20 +16,18 @@ class DragList extends React.Component {
   }
   handleOnDragEnd(result) {
     if (!result.destination) return;
-    let remotePodcasts = [...this.props.podcasts];
+    let remotePodcasts = JSON.parse(JSON.stringify(this.props.podcasts));
     let [movedPodcast] = remotePodcasts.splice(result.source.index, 1);
-    let savedPodcast = Object.create(movedPodcast);
-    console.log(result);
     if (result.destination.droppableId === result.source.droppableId) {
-      let originalPodcasts = [...this.props.localPodcasts];
+      let originalPodcasts = JSON.parse(JSON.stringify(this.props.localPodcasts));
       let [reorderedPodcast] = originalPodcasts.splice(result.source.index, 1);
       if (!reorderedPodcast.id) return;
       originalPodcasts.splice(result.destination.index, 0, reorderedPodcast);
       this.props.setLocalPodcast(originalPodcasts);
-    } else if (this.props.localPodcasts.includes(savedPodcast)) {
+    } else if (this.props.localPodcasts.includes(movedPodcast)) {
       return;
     } else {
-      this.props.addLocalPodcast(savedPodcast);
+      this.props.addLocalPodcast(movedPodcast);
       return;
     }
   }
@@ -39,10 +37,10 @@ class DragList extends React.Component {
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
         <div
           style={{
-            maxWidth: '50%',
+            maxWidth: '600px',
             minWidth: '600px',
             borderStyle: 'solid',
-            borderColor: 'purple',
+            borderColor: '#7600a8',
           }}
           className="m-3 rounded shadow"
         >
@@ -50,11 +48,13 @@ class DragList extends React.Component {
             playPodcast={this.props.playPodcast}
             pausePodcast={this.props.pausePodcast}
             audio={this.props.audio}
+            isPlaying={this.props.isPlaying}
           />
         </div>
         <div
           style={{
-            maxWidth: '50%',
+            maxWidth: '600px',
+            minWidth: '600px',
             borderStyle: 'solid',
             borderColor: '#00A0EE',
           }}
@@ -64,6 +64,7 @@ class DragList extends React.Component {
             playPodcast={this.props.playPodcast}
             pausePodcast={this.props.pausePodcast}
             audio={this.props.audio}
+            isPlaying={this.props.isPlaying}
           />
         </div>
       </DragDropContext>

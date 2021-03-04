@@ -5,7 +5,8 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts }) => {
+const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlaying }) => {
+
   return (
     <div style={{ minWidth: '600px' }}>
       <Droppable droppableId="local">
@@ -25,7 +26,7 @@ const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts }) => {
                   >
                     {provided => (
                       <Card
-                        className="shadow m-3"
+                        className="shadow m-3 zoom"
                         border="light"
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
@@ -47,17 +48,10 @@ const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts }) => {
                             <Card.Text>{podcast.description}</Card.Text>
                           </div>
                           <div>
-                            {!(audio === podcast.audio) ? (
-                              <FontAwesomeIcon
-                                icon={faPlayCircle}
-                                onClick={() => playPodcast(podcast.audio)}
-                              />
-                            ) : (
-                              <FontAwesomeIcon
-                                icon={faPauseCircle}
-                                onClick={() => pausePodcast(podcast.audio)}
-                              />
-                            )}
+                          <FontAwesomeIcon
+                              icon={(audio === podcast.audio) && isPlaying? faPauseCircle : faPlayCircle}
+                              onClick={(audio === podcast.audio) && isPlaying ? () => pausePodcast() : () => playPodcast(podcast.audio) }
+                            />
                           </div>
                         </Card.Body>
                       </Card>

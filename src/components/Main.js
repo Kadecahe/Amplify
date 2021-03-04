@@ -1,5 +1,4 @@
 import * as React from 'react';
-import About from './About';
 import { connect } from 'react-redux';
 import Player from './Player/Player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +12,6 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <About />
         <Player allPodcasts={this.props.allPodcasts} />
         <footer>
           <div>

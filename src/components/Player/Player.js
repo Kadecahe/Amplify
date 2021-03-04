@@ -17,21 +17,19 @@ class Player extends React.Component {
 
   playPodcast(audio) {
     console.log('in');
-    if (this.state.currPodcast === audio) return;
-    if (this.state.isPaused) {
-      console.log('trying to play old track');
+    if (this.state.isPlaying && (this.state.currPodcast === audio) ) {
+      return
     }
+    if (this.state.currPodcast === audio) {
+      this.state.howl.play()
+      this.setState({isPlaying: true})
+      return
+    };
+
     if (this.state.currPodcast && !this.state.isPaused) {
-      console.log('stopping old track');
       this.state.howl.stop();
     }
-    //   if(!this.state.isPlaying && this.state.currPodcast) {
-    //   console.log('trying to play old track')
-    //   this.state.howl.play()
-    //   return
-    // }
-    console.log('playing new track');
-    const podcast = new Howl({
+      const podcast = new Howl({
       src: audio,
       html5: true,
     });
@@ -45,7 +43,6 @@ class Player extends React.Component {
   }
 
   pausePodcast() {
-    console.log('pausing');
     this.state.howl.pause();
     this.setState({ isPlaying: false });
   }
@@ -58,7 +55,8 @@ class Player extends React.Component {
           <DragList
             playPodcast={this.playPodcast}
             pausePodcast={this.pausePodcast}
-            audio={this.state.audio}
+            audio={this.state.currPodcast}
+            isPlaying={this.state.isPlaying}
           />
         </div>
       );

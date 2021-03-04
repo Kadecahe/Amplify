@@ -5,6 +5,9 @@ import { AppActions } from './types/actions';
 import { loadState, saveState } from './localStorage';
 import { localPodcastReducer } from './reducers/localPodcasts';
 import { throttle } from 'lodash';
+import {composeWithDevTools} from 'redux-devtools-extension'
+import {createLogger} from 'redux-logger'
+
 
 const persistentState = loadState();
 export const reducer = combineReducers({
@@ -18,7 +21,7 @@ export type AppState = ReturnType<typeof reducer>;
 export const store = createStore(
   reducer,
   persistentState,
-  applyMiddleware(thunkMiddleware as ThunkMiddleware<AppState, AppActions>)
+  composeWithDevTools(applyMiddleware(thunkMiddleware as ThunkMiddleware<AppState, AppActions>, createLogger({collapsed: true})))
 );
 
 store.subscribe(
