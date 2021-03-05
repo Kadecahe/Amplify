@@ -1,10 +1,9 @@
 
-<h3 align="center">Amplify</h3>
+##Amplify
 ---
 
-<p align="center"> An application developed for the 2021 Onramp SiriusXM + Pandora Software Engineering Apprenticeship as a take home project
-    <br>
-</p>
+An application developed for the 2021 Onramp SiriusXM + Pandora Software Engineering Apprenticeship as a take home project
+
 
 ## 📝 Table of Contents
 - [About](#about)
@@ -15,16 +14,14 @@
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
-<p align="center">
+
 Amplify is a software engineering, web development, and technology podcast web player offering featured podcasts that users can save in a personalized playlist. The project is a single page application (SPA). SPA apps like Amplify, with the help of React and Redux on the front end, update and shift the DOM as users interact with the application without making an HTTP request for every link or asset requested. Amplify, loads the featured playlist from a Postgres database through a GraphQL server when the main component that renders the application connects with the index.html file and creates the virtual DOM that becomes our full stack application. The application also utilizes client side local storage, stored on the client window to persist saved podcasts that function as a user’s personalized playlists. Local storage allows the app to always provide their saved podcasts with speed since the data doesn't come from the apps database. This gives users immediate access to playing music in case the remote audio is rendering slower or has other issues..
-</p>
 
-<p align="center">
-The Redux store serves as our single source of truth for state management. The store combines the reducers that keep our data and UI in sync. Amplify’s Redux store listens to changes to the remotely fetched podcasts, the locally stored podcasts, the current audio playing, the sound object for the remote playlists, the sound object for the, and whether or not the player is currently playing music. This helps us ensure that the left playlist only plays one track at a time, while our right playlist functions like a playlist. </p>
+The Redux store serves as our single source of truth for state management. The store combines the reducers that keep our data and UI in sync. Amplify’s Redux store listens to changes to the remotely fetched podcasts, the locally stored podcasts, the current audio playing, the sound object for the remote playlists, the sound object for the, and whether or not the player is currently playing music. This helps us ensure that the left playlist only plays one track at a time, while our right playlist functions like a playlist.
 
-<p align="center">
+
 This full stack application was developed with Node, Express, React, Redux, GraphQL, Apollo, Postgres, Howler, Javascript, Typescript, Bootstrap, HTML, and CSS. When seeing that the two people who will join Sirius XM + Pandora's Software Engineering Apprenticeship will work with Typescript, I challenged myself to develop this project with Typescript to catch errors before runtime. To provide persistent audio, the application utilizes Redux to manage remote data and the window's local storage for saved podcasts. I chose a minimalist theme that focuses on podcasts. Utilizing Typescript, GraphQL, and Apollo were new concepts for me. The coding project also helped me learn how to leverage React-beautiful-dnd for drag and drop functionality. While the app currently loads data from a GraphQL API, the app has the code for a REST API as well.
-</p>
+<
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
