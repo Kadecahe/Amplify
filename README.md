@@ -1,5 +1,5 @@
 
-##Amplify
+## Amplify
 ---
 
 An application developed for the 2021 Onramp SiriusXM + Pandora Software Engineering Apprenticeship as a take home project
@@ -58,6 +58,7 @@ Tech Stack:
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@kadecahe](https://github.com/kadecahe)
-![Amplify Tech Stack](https://github.com/Kadecahe/Amplify/blob/main/public/Amplify-Stack.png?raw=true)
+
+![Amplify Tech Stack](https://github.com/Kadecahe/Amplify/blob/main/public/Amplify-stack.png?raw=true)
 
 
