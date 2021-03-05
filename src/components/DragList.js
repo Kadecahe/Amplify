@@ -7,7 +7,6 @@ import {
   setLocalPodcasts,
 } from '../store/actions/localPodcasts';
 import { PodcastList, RemotePodcast } from './index';
-import { v4 as uuidv4 } from 'uuid';
 
 
 class DragList extends React.Component {
@@ -16,19 +15,15 @@ class DragList extends React.Component {
 
     this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
   }
-  //the draggable id needs to be different.
-  handleOnDragEnd(result) {
-    // if(result.destination.droppableId && !result.destination) {
-    //   this.props.remotePodcasts(result.source.index)
-    // }
 
+  handleOnDragEnd(result) {
     if (!result.destination) {
       if(result.source.droppableId === 'local') {
-        console.log(result.source.index)
         this.props.removeLocalPodcast(result.source.index);
       }
       return;
     }
+    console.log(result)
 
     let remotePodcasts = JSON.parse(JSON.stringify(this.props.podcasts));
     let [movedPodcast] = remotePodcasts.splice(result.source.index, 1);
@@ -36,14 +31,17 @@ class DragList extends React.Component {
     if (result.destination.droppableId === result.source.droppableId) {
       let originalPodcasts = JSON.parse(JSON.stringify(this.props.localPodcasts));
       let [reorderedPodcast] = originalPodcasts.splice(result.source.index, 1);
-      // if (!reorderedPodcast.id) return; <- gave an error
       originalPodcasts.splice(result.destination.index, 0, reorderedPodcast);
       this.props.setLocalPodcast(originalPodcasts);
-    } else if (this.props.localPodcasts.includes(movedPodcast)) {
-      return;
+    // } else if (this.props.localPodcasts.includes(movedPodcast)) {
+    //   return;
     } else {
       //Let's warn the user if they try to add the same podcast twice
-      if(this.props.localPodcasts[result.destination.index]) {
+      //make sure the index is one ahead
+      result.destination.index = this.props.localPodcasts.length
+      if(this.props.localPodcasts.some(podcast => (
+        podcast.id === movedPodcast.id
+      ))) {
         alert('This podcast is already in your saved collection')
         return
       }
@@ -57,13 +55,16 @@ class DragList extends React.Component {
       <DragDropContext onDragEnd={this.handleOnDragEnd}>
         <div
           style={{
-            maxWidth: '600px',
-            minWidth: '600px',
             borderStyle: 'solid',
             borderColor: '#7600a8',
           }}
-          className="m-3 rounded shadow"
+          className="m-3 rounded shadow container"
         >
+          <div className='mt-1 section'>
+          <h3>Featured Podcasts</h3>
+          </div>
+
+
           <RemotePodcast
             playPodcast={this.props.playPodcast}
             pausePodcast={this.props.pausePodcast}
@@ -73,13 +74,14 @@ class DragList extends React.Component {
         </div>
         <div
           style={{
-            maxWidth: '600px',
-            minWidth: '600px',
             borderStyle: 'solid',
             borderColor: '#3668ff',
           }}
-          className="m-3 rounded shadow"
+          className="m-3 rounded shadow container"
         >
+          <div className='mt-1 section section-local'>
+          <h3>Saved Podcasts</h3>
+          </div>
           <PodcastList
             playPodcast={this.props.playPodcast}
             pausePodcast={this.props.pausePodcast}

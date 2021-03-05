@@ -8,12 +8,10 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlaying }) => {
   if (!allPodcasts.length) return <h3>Loading</h3>;
   return (
-    <div>
       <Droppable droppableId="remote" isDropDisabled={true}>
         {provided => (
-          <div>
             <div
-              className="d-flex flex-column scroll"
+              className="scroll"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -60,10 +58,9 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlayin
               ))}
               {provided.placeholder}
             </div>
-          </div>
         )}
       </Droppable>
-    </div>
+
   );
 };
 

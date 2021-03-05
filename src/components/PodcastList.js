@@ -5,15 +5,12 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-
 const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlaying }) => {
   return (
-    <div style={{ minWidth: '600px' }}>
       <Droppable droppableId="local">
         {provided => (
-          <div>
             <div
-              className="d-flex flex-column"
+              className="scroll"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -58,25 +55,13 @@ const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlayin
                     )}
                   </Draggable>
                 ))
-              ) : (
-                <Draggable draggableId="fist" index={-1} isDragDisabled={true}>
-                  {provided => (
-                    <h1
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                    >
-                      Save Your Podcasts Here
-                    </h1>
-                  )}
-                </Draggable>
-              )}
+              ) : !provided.placeholder && (
+                <p>Drop items here</p>
+            )}
               {provided.placeholder}
             </div>
-          </div>
         )}
       </Droppable>
-    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div id="container">
+    <div id="about">
       <h1>Amplify Podcasts</h1>
       <p>
         Hi! I'm Kade Cahe, they/them/theirs pronouns. This project is my
