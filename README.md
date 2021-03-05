@@ -33,9 +33,9 @@ To use this application, you will need access to Node.js and a code editor such 
 ### Installing and Start
 To get started:
 * Clone the repo: `https://github.com/Kadecahe/Amplify.git`
-*To install dependencies, run `npm install`
-*Ensure that your Postgres database is running and that you have created a database called amplify. Once your database is up, you can run `npm run seed` to populate the backend with the data necessary to view this application.
-*You will need to start both the backend server and the front end create-react-app server to successfully run this project. You run both with one command by running `npm run start-dev`. You can also open up two terminals that start at the root of the project and run one of the following commands in each: `npm run server` and `npm start`
+* To install dependencies, run `npm install`
+* Ensure that your Postgres database is running and that you have created a database called amplify. Once your database is up, you can run `npm run seed` to populate the backend with the data necessary to view this application.
+* You will need to start both the backend server and the front end create-react-app server to successfully run this project. You run both with one command by running `npm run start-dev`. You can also open up two terminals that start at the root of the project and run one of the following commands in each: `npm run server` and `npm start`
 
 ## 🔧 Running the tests <a name = "tests"></a>
 You can check the available GraphQL API routes by visiting `https://localhost:8080/graphql`
