@@ -6,7 +6,7 @@ import {
   removeLocalPodcast,
   setLocalPodcasts,
 } from '../store/actions/localPodcasts';
-import { PodcastList, RemotePodcast } from './index';
+import { RemotePodcast } from './index';
 import LocalPlayer from './Player/localPlayer'
 
 class DragList extends React.Component {

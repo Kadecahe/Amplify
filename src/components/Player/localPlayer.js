@@ -1,9 +1,15 @@
 import React from 'react';
 import {PodcastList} from '../index';
+import {
+  setAudio,
+  setLocalSong,
+  toggelIsPlaying,
+} from '../../store/actions/player';
+import { connect } from 'react-redux';
 
 // creates the Audio element
 // While the Audio element is part of HTML5, it doesn't `visually` show up anywhere in the DOM.
-// However, we interact with it the same way we would a DOM node. That's pretty cool!
+// However, we interact with it the same way we would a DOM node
 
 const AUDIO = document.createElement('audio')
 
@@ -19,7 +25,6 @@ const skip = (interval, { currentSongList, currentSong }) => {
   return [next, currentSongList]
 }
 
-// The stateful Audio component
 
 class LocalPlayer extends React.Component {
   constructor () {
@@ -34,8 +39,6 @@ class LocalPlayer extends React.Component {
     this.toggle = this.toggle.bind(this)
     this.toggleOne = this.toggleOne.bind(this)
     this.next = this.next.bind(this)
-    this.stop = this.stop.bind(this)
-    this.eventHandler = this.eventHandler.bind(this)
 
   }
 
@@ -45,22 +48,22 @@ class LocalPlayer extends React.Component {
 
   play () {
     AUDIO.play()
-    this.setState({isPlaying: true})
+    this.props.togglePlay(true)
+    if(Object.keys(this.props.currentSong).length) {
+    this.props.setAudio(this.props.currentSong.audio)}
   }
 
   pause () {
     AUDIO.pause()
-    this.setState({isPlaying: false})
+    this.props.togglePlay(false)
+
   }
 
   load (currentSong, currentSongList) {
     AUDIO.src = currentSong.audio
     AUDIO.load()
-    this.setState({
-      currentSong: currentSong,
-      currentSongList: currentSongList,
-      audio: currentSong.audio
-    })
+    this.props.setSong(currentSong)
+    this.props.setAudio(currentSong.audio)
   }
 
   startSong (song, list) {
@@ -70,45 +73,40 @@ class LocalPlayer extends React.Component {
   }
 
   toggleOne (selectedSong, selectedSongList) {
-    if (selectedSong.id !== this.state.currentSong.id) {
-      this.startSong(selectedSong, selectedSongList)
+    if (selectedSong.id !== this.props.currentSong.id) {
+      this.startSong(selectedSong, this.props.currentSongList)
     } else {
       this.toggle()
     }
   }
 
   toggle () {
-    if (this.state.isPlaying) this.pause()
+    if (this.props.isPlaying) this.pause()
     else this.play()
   }
 
   next () {
-    let index = this.state.currentSongList.indexOf(this.state.currentSong)
-    if((index + 1) === this.state.currentSongList.length) {
+    let index = this.props.currentSongList.indexOf(this.props.currentSong)
+    if((index + 1) === this.props.currentSongList.length) {
       AUDIO.pause()
-      this.stop()
       return
     }
-    this.startSong(...skip(1, this.state))
+    let {currentSong, currentSongList, isPlaying, audio} = this.props
+    let state = {
+      currentSong,
+      currentSongList,
+      isPlaying,
+      audio
+    }
+    this.startSong(...skip(1, state))
   }
 
-  stop() {
-    this.setState({
-      currentSong: {},
-      currentSongList: [],
-      isPlaying: false
-    })
-  }
-
-  eventHandler() {
-    return this.next()
-  }
 
   render() {
     return (
       <PodcastList
-      audio={this.state.audio}
-      isPlaying={this.state.isPlaying}
+      audio={this.props.audio}
+      isPlaying={this.props.isPlaying}
       pausePodcast={this.pause}
       playlistPlay={this.toggleOne}
       toggle={this.toggle}
@@ -116,5 +114,17 @@ class LocalPlayer extends React.Component {
     )
   }
 }
+const mapStateToProps = state => ({
+  currentSongList: state.savedPodcasts,
+  isPlaying: state.isPlaying,
+  audio: state.audio,
+  currentSong: state.currentSong,
+});
 
-export default LocalPlayer;
+const mapDispatchToProps = dispatch => ({
+  togglePlay: bool => dispatch(toggelIsPlaying(bool)),
+  setAudio: audio => dispatch(setAudio(audio)),
+  setSong: audio => dispatch(setLocalSong(audio))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocalPlayer);

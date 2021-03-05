@@ -7,12 +7,20 @@ import { localPodcastReducer } from './reducers/localPodcasts';
 import { throttle } from 'lodash';
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {createLogger} from 'redux-logger'
-
-
+import {audioReducer} from './reducers/audio'
+import {howlReducer} from './reducers/howl'
+import {isPlayingReducer} from './reducers/isPlaying'
+import { currentSongReducer } from './reducers/currentSong';
+import whichPlayer from './reducers/whichPlayer'
 const persistentState = loadState();
 export const reducer = combineReducers({
   podcasts: podcastReducer,
   savedPodcasts: localPodcastReducer,
+  audio: audioReducer,
+  howl: howlReducer,
+  isPlaying: isPlayingReducer,
+  currentSong: currentSongReducer,
+  whichPlayer
 });
 
 //Grabs the all types of the main reducer and uses it as the state for the app

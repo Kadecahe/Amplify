@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { About, Main } from './components';
+import { About, Main, NotFound } from './components';
 import { setPodcasts } from './store/actions/podcasts';
 
 class Routes extends React.Component {
@@ -13,7 +13,8 @@ class Routes extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/about" exact component={About} />
+        <Route exact path="/about" component={About} />
+        <Route path="/:all" component={NotFound} />
       </Switch>
     );
   }

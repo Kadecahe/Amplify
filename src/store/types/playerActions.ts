@@ -1,32 +1,54 @@
 import { AddLocalPodcastAction } from './actions';
-import { Player } from './Player';
+import { Howl, Audio, CurrentSong, Playing } from './Player';
 
+export const SET_HOWL = 'SET_HOWL'
+export const REMOVE_HOWL = 'REMOVE_HOWL'
 export const SET_AUDIO = 'SET_AUDIO';
 export const REMOVE_AUDIO = 'REMOVE_AUDIO';
 export const SET_PLAY = 'SET_PLAY';
 export const SET_PAUSE = 'SET_PAUSE';
 export const SET_STOP = 'SET_STOP';
+export const TOGGLE_PLAYING = 'TOGGLE_PLAYING'
 
-export const SET_LOCAL_AUDIO = 'SET_LOCAL_AUDIO';
+export const SET_LOCAL_SONG = 'SET_LOCAL_SONG';
+export const REMOVE_LOCAL_SONG = 'REMOVE_LOCAL_SONG';
+
+
 export const SET_LOCAL_PLAY = 'SET_LOCAL_PLAY';
 export const SET_LOCAL_PAUSE = 'SET_LOCAL_PAUSE';
 export const SET_LOCAL_STOP = 'SET_LOCAL_STOP';
 export const ADD_LOCAL_AUDIO = 'ADD_LOCAL_AUDIO';
-export const REMOVE_LOCAL_AUDIO = 'REMOVE_LOCAL_AUDIO';
+
+export interface SetHowlAction {
+  type: typeof SET_HOWL;
+  howl: Howl;
+}
+
+export interface RemoveHowlAction {
+  type: typeof REMOVE_HOWL;
+  howl: Howl;
+}
 
 export interface SetAudioAction {
   type: typeof SET_AUDIO;
-  remotePlayer: Player;
+  audio: Audio;
 }
 
 export interface RemoveAudioAction {
   type: typeof REMOVE_AUDIO;
-  howl: object;
+  audio: Audio;
+}
+
+export interface ToggleIsPlayingAction {
+  type: typeof TOGGLE_PLAYING;
+  isPlaying: Playing
 }
 
 export interface SetPlayAction {
   type: typeof SET_PLAY;
-  currAudio?: string;
+  currentSong?: object;
+  currentSongList?: object;
+  audio?: string;
   howl?: object;
   isPlaying?: boolean;
 }
@@ -40,30 +62,35 @@ export interface SetStopAction {
   type: typeof SET_STOP;
 }
 
-export interface SetLocalAudioAction {
-  type: typeof SET_LOCAL_AUDIO;
-  localPlayer: Player;
+export interface SetLocalSongAction {
+  type: typeof SET_LOCAL_SONG;
+  currentSong: CurrentSong;
+}
+
+export interface RemoveLocalSongAction {
+  type: typeof REMOVE_LOCAL_SONG;
 }
 
 export interface AddLocalAudioAction {
   type: typeof ADD_LOCAL_AUDIO;
-  currAudio: string;
+  currentSong: object;
 }
 
-export interface RemoveLocalPodcastAction {
-  type: typeof REMOVE_LOCAL_AUDIO;
-  currAudio: string;
-}
+// export interface RemoveLocalSongAction {
+//   type: typeof REMOVE_LOCAL_AUDIO;
+// }
 
 export type PlayerActionTypes =
   | SetAudioAction
   | RemoveAudioAction
+  | SetHowlAction
+  | RemoveHowlAction
+  | ToggleIsPlayingAction
   | SetPlayAction
   | SetPauseAction
   | SetStopAction
-  | SetLocalAudioAction
-  | RemoveLocalPodcastAction
+  | SetLocalSongAction
+  | RemoveLocalSongAction
   | AddLocalPodcastAction;
 
-//Might recursively render playlist funtionality for local playlist.
 export type AppActions = PlayerActionTypes;
