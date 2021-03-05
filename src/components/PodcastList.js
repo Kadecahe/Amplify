@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlaying }) => {
+
+const PodcastList = ({ playlistPlay, pausePodcast, audio, localPodcasts, isPlaying, toggle }) => {
   return (
       <Droppable droppableId="local">
         {provided => (
@@ -46,8 +47,9 @@ const PodcastList = ({ playPodcast, pausePodcast, audio, localPodcasts, isPlayin
                           </div>
                           <div>
                           <FontAwesomeIcon
-                              icon={(audio === podcast.audio) && isPlaying? faPauseCircle : faPlayCircle}
-                              onClick={(audio === podcast.audio) && isPlaying ? () => pausePodcast() : () => playPodcast(podcast.audio) }
+                              icon={( podcast.audio === audio) && isPlaying? faPauseCircle : faPlayCircle}
+                              onClick={() => playlistPlay(podcast, localPodcasts)}
+                              className="cursor"
                             />
                           </div>
                         </Card.Body>

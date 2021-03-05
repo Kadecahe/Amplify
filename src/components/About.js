@@ -35,7 +35,7 @@ const About = () => {
         <span>
           Amplify is a single page (SPA) full stack application developed with
           Node, Express, React, Redux, GraphQL, Apollo, Postgres, Howler,
-          Javascript, Typescript, Bootstrap, HTLM, and CSS.
+          Javascript, Typescript, Bootstrap, HTML, and CSS.
         </span>{' '}
         When seeing that the two people who will join Sirius XM + Pandora's
         Software Engineering Apprenticeship will work with Typescript, I

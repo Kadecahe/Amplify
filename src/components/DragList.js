@@ -7,7 +7,7 @@ import {
   setLocalPodcasts,
 } from '../store/actions/localPodcasts';
 import { PodcastList, RemotePodcast } from './index';
-
+import LocalPlayer from './Player/localPlayer'
 
 class DragList extends React.Component {
   constructor(props) {
@@ -82,12 +82,7 @@ class DragList extends React.Component {
           <div className='mt-1 section section-local'>
           <h3>Saved Podcasts</h3>
           </div>
-          <PodcastList
-            playPodcast={this.props.playPodcast}
-            pausePodcast={this.props.pausePodcast}
-            audio={this.props.audio}
-            isPlaying={this.props.isPlaying}
-          />
+          <LocalPlayer />
         </div>
       </DragDropContext>
     );

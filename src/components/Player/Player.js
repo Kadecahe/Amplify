@@ -1,6 +1,9 @@
 import React from 'react';
 import { Howl } from 'howler';
 import { DragList } from '../index';
+import { connect } from 'react-redux';
+
+let global_index = 0;
 
 class Player extends React.Component {
   constructor(props) {
@@ -13,10 +16,12 @@ class Player extends React.Component {
 
     this.playPodcast = this.playPodcast.bind(this);
     this.pausePodcast = this.pausePodcast.bind(this);
+    this.playlistPlay = this.playlistPlay.bind(this);
+
+
   }
 
   playPodcast(audio) {
-    console.log('in');
     if (this.state.isPlaying && (this.state.currPodcast === audio) ) {
       return
     }
@@ -46,6 +51,43 @@ class Player extends React.Component {
     this.state.howl.pause();
     this.setState({ isPlaying: false });
   }
+
+  playlistPlay(i, podcasts) {
+    let copy = podcasts.slice(1)
+    let audio = copy.filter(track => track.audio )
+    var sound = new Howl({
+        src: audio,
+        html5: true,
+        onend: function () {
+            if ((i + 1) === podcasts.length) {
+                sound.stop()
+    }
+
+  } })
+    this.setState({ currPodcast: podcasts[i].audio, howl: sound, isPlaying: true });
+
+    sound.play();
+
+}
+
+// playNext(i, podcasts) {
+//   var sound = new Howl({
+//     src: [podcasts[i].audio],
+//     html5: true,
+//     onend: function () {
+//         if ((i + 1) === podcasts.length) {
+//             sound.stop()
+//         } else {
+//           this.playlistPlay(i + 1, podcasts)
+//         }
+//     }
+// })
+// this.setState({ currPodcast: podcasts[i].audio, howl: sound, isPlaying: true });
+
+// sound.play();
+
+
+// }
   render() {
     let tracks = this.props.allPodcasts || [];
     if (!tracks.length) return <h3>Loading</h3>;
@@ -57,6 +99,7 @@ class Player extends React.Component {
             pausePodcast={this.pausePodcast}
             audio={this.state.currPodcast}
             isPlaying={this.state.isPlaying}
+            playlistPlay={this.playlistPlay}
           />
         </div>
       );
@@ -64,4 +107,8 @@ class Player extends React.Component {
   }
 }
 
-export default Player;
+const mapStateToProps = state => ({
+  localPodcasts: state.savedPodcasts,
+});
+
+export default connect(mapStateToProps)(Player);
