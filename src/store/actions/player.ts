@@ -1,4 +1,4 @@
-import { AppActions, SET_AUDIO, REMOVE_AUDIO, SET_PLAY, SET_PAUSE, SET_STOP, SET_HOWL, REMOVE_HOWL, TOGGLE_PLAYING, SET_LOCAL_SONG } from '../types/playerActions';
+import { AppActions, SET_AUDIO, REMOVE_AUDIO, SET_HOWL, REMOVE_HOWL, TOGGLE_PLAYING, SET_LOCAL_SONG, REMOVE_LOCAL_SONG } from '../types/playerActions';
 import { Audio, CurrentSong, Howl, Playing } from '../types/Player';
 
 export const setAudio = (audio: Audio): AppActions => ({
@@ -33,25 +33,7 @@ export const setLocalSong = (currentSong: CurrentSong): AppActions => ({
   currentSong
 })
 
-// export interface AddLocalAudioAction {
-//   type: typeof ADD_LOCAL_AUDIO;
-//   currentSong: object;
-// }
+export const removeLocalSong = (): AppActions => ({
+  type: REMOVE_LOCAL_SONG,
 
-// export const setPlay = ( currentSong?: object, currentSongList?: object, audio?: string, howl?: object, isPlaying?: boolean): AppActions => ({
-//   type: SET_PLAY,
-//   currentSong,
-//   currentSongList,
-//   audio,
-//   howl,
-//   isPlaying
-// });
-
-// export const setPause = (isPlaying: boolean): AppActions => ({
-//   type: SET_PAUSE,
-//   isPlaying
-// })
-
-// export const setStop = (): AppActions => ({
-//   type: SET_STOP,
-// })
+})

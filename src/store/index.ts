@@ -12,6 +12,7 @@ import {howlReducer} from './reducers/howl'
 import {isPlayingReducer} from './reducers/isPlaying'
 import { currentSongReducer } from './reducers/currentSong';
 import whichPlayer from './reducers/whichPlayer'
+import {localTrackReducer} from './reducers/localTrack'
 const persistentState = loadState();
 export const reducer = combineReducers({
   podcasts: podcastReducer,
@@ -20,7 +21,8 @@ export const reducer = combineReducers({
   howl: howlReducer,
   isPlaying: isPlayingReducer,
   currentSong: currentSongReducer,
-  whichPlayer
+  whichPlayer,
+  localTrack: localTrackReducer
 });
 
 //Grabs the all types of the main reducer and uses it as the state for the app

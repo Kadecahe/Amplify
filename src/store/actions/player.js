@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.setLocalSong = exports.toggelIsPlaying = exports.removeHowl = exports.setHowl = exports.removeAudio = exports.setAudio = void 0;
+exports.removeLocalSong = exports.setLocalSong = exports.toggelIsPlaying = exports.removeHowl = exports.setHowl = exports.removeAudio = exports.setAudio = void 0;
 var playerActions_1 = require("../types/playerActions");
 var setAudio = function (audio) { return ({
     type: playerActions_1.SET_AUDIO,
@@ -32,22 +32,7 @@ var setLocalSong = function (currentSong) { return ({
     currentSong: currentSong
 }); };
 exports.setLocalSong = setLocalSong;
-// export interface AddLocalAudioAction {
-//   type: typeof ADD_LOCAL_AUDIO;
-//   currentSong: object;
-// }
-// export const setPlay = ( currentSong?: object, currentSongList?: object, audio?: string, howl?: object, isPlaying?: boolean): AppActions => ({
-//   type: SET_PLAY,
-//   currentSong,
-//   currentSongList,
-//   audio,
-//   howl,
-//   isPlaying
-// });
-// export const setPause = (isPlaying: boolean): AppActions => ({
-//   type: SET_PAUSE,
-//   isPlaying
-// })
-// export const setStop = (): AppActions => ({
-//   type: SET_STOP,
-// })
+var removeLocalSong = function () { return ({
+    type: playerActions_1.REMOVE_LOCAL_SONG
+}); };
+exports.removeLocalSong = removeLocalSong;
