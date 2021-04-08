@@ -30,7 +30,7 @@ const PodcastList = ({ playlistPlay, pausePodcast, audio, localPodcasts, isPlayi
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
                       >
-                        <Card.Body className="m-1 d-flex flex-row align-items-center">
+                        <Card.Body className="m-1 d-flex flex-row justify-content-between align-items-center">
                           <Card.Img
                             style={{ width: '25%' }}
                             src={podcast.image}
@@ -50,6 +50,7 @@ const PodcastList = ({ playlistPlay, pausePodcast, audio, localPodcasts, isPlayi
                               icon={( podcast.audio === audio) && isPlaying? faPauseCircle : faPlayCircle}
                               onClick={() => playlistPlay(podcast, localPodcasts)}
                               className="cursor"
+                              size="2x"
                             />
                           </div>
                         </Card.Body>

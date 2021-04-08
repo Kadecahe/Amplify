@@ -3,7 +3,9 @@ import { Howl } from 'howler';
 import { DragList } from '../index';
 import { connect } from 'react-redux';
 import {
+  removeAudio,
   removeHowl,
+  removeLocalSong,
   setAudio,
   setHowl,
   toggelIsPlaying,
@@ -19,25 +21,38 @@ class Player extends React.Component {
   }
 
   playPodcast(audio) {
-    this.props.setPlayer('Remote')
+    if(this.props.whichPlayer === 'Local') {
+      // changing the player from local to remote
+      this.props.removeAudio()
+      this.props.localTrack.pause()
+      this.props.togglePlay(false)
+      this.props.removeLocalSong()
+      this.props.setPlayer('Remote')
+    }
 
     if (this.props.isPlaying && this.props.audio === audio) {
       return;
     }
-    if (this.props.auidio === audio) {
-      this.props.howl.play();
-      this.props.togglePlay(true);
-      return;
+    if (this.props.audio === audio && !this.props.isPlaying) {
+      if(Object.keys(this.props.howl).length) {
+        this.props.howl.play();
+        this.props.togglePlay(true);
+        return;
+      }
+
     }
 
-    if (this.props.auidio && !this.props.isPaused) {
-      this.props.howl.stop();
+    if (this.props.audio !== audio && this.props.isPlaying) {
+      if(Object.keys(this.props.howl).length) {
+        this.props.howl.stop();
+      }
     }
     const podcast = new Howl({
       src: audio,
       html5: true,
     });
     podcast.play();
+    this.props.setPlayer('Remote');
     this.props.setAudio(audio);
     this.props.togglePlay(true);
     this.props.setHowl(podcast);
@@ -49,10 +64,15 @@ class Player extends React.Component {
   }
 
   pausePodcast() {
-    if(!Object.keys(this.props.howl).length) return
+    if(!Object.keys(this.props.howl).length) {
+      this.props.togglePlay(false)
+      this.props.removePlayer()
+      this.props.localTrack.pause()
+      this.props.removeAudio()
+      return
+    }
     this.props.howl.pause();
     this.props.togglePlay(false);
-    this.props.removePlayer()
   }
 
   render() {
@@ -78,7 +98,8 @@ const mapStateToProps = state => ({
   isPlaying: state.isPlaying,
   audio: state.audio,
   howl: state.howl,
-  whichPlayer: state.whichPlayer
+  whichPlayer: state.whichPlayer,
+  localTrack: state.localTrack
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -87,7 +108,9 @@ const mapDispatchToProps = dispatch => ({
   setHowl: howl => dispatch(setHowl(howl)),
   removeHowl: () => dispatch(removeHowl()),
   setPlayer: (type) => dispatch(setPlayer(type)),
-  removePlayer: () => dispatch(removePlayer())
+  removePlayer: () => dispatch(removePlayer()),
+  removeAudio: () => dispatch(removeAudio()),
+  removeLocalSong: () => dispatch(removeLocalSong())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

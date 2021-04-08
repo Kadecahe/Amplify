@@ -23,7 +23,6 @@ class DragList extends React.Component {
       }
       return;
     }
-    console.log(result)
 
     let remotePodcasts = JSON.parse(JSON.stringify(this.props.podcasts));
     let [movedPodcast] = remotePodcasts.splice(result.source.index, 1);
@@ -33,8 +32,6 @@ class DragList extends React.Component {
       let [reorderedPodcast] = originalPodcasts.splice(result.source.index, 1);
       originalPodcasts.splice(result.destination.index, 0, reorderedPodcast);
       this.props.setLocalPodcast(originalPodcasts);
-    // } else if (this.props.localPodcasts.includes(movedPodcast)) {
-    //   return;
     } else {
       //Let's warn the user if they try to add the same podcast twice
       //make sure the index is one ahead

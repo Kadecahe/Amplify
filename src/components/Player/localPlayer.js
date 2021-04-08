@@ -1,11 +1,14 @@
 import React from 'react';
 import {PodcastList} from '../index';
 import {
+  removeHowl,
   setAudio,
   setLocalSong,
   toggelIsPlaying,
 } from '../../store/actions/player';
 import { connect } from 'react-redux';
+import { removePlayer, setLocal } from '../../store/reducers/whichPlayer';
+import { setLocalTrack } from '../../store/reducers/localTrack';
 
 // creates the Audio element
 // While the Audio element is part of HTML5, it doesn't `visually` show up anywhere in the DOM.
@@ -29,13 +32,6 @@ const skip = (interval, { currentSongList, currentSong }) => {
 class LocalPlayer extends React.Component {
   constructor () {
     super()
-    this.state = {
-      currentSong: {},
-      currentSongList: [],
-      isPlaying: false,
-      audio: ''
-    }
-
     this.toggle = this.toggle.bind(this)
     this.toggleOne = this.toggleOne.bind(this)
     this.next = this.next.bind(this)
@@ -44,6 +40,8 @@ class LocalPlayer extends React.Component {
 
   componentDidMount () {
     AUDIO.addEventListener('ended', () => this.next())
+    AUDIO.setAttribute('id', 'track')
+    this.props.setLocalTrack(AUDIO)
   }
 
   play () {
@@ -74,14 +72,27 @@ class LocalPlayer extends React.Component {
 
   toggleOne (selectedSong, selectedSongList) {
     if (selectedSong.id !== this.props.currentSong.id) {
+      if(this.props.whichPlayer === 'Remote' ) {
+        this.props.howl.stop();
+        this.props.removeHowl();
+      }
       this.startSong(selectedSong, this.props.currentSongList)
+      this.props.setPlayer('Local')
+      this.props.setAudio(selectedSong.audio)
     } else {
       this.toggle()
     }
   }
 
   toggle () {
-    if (this.props.isPlaying) this.pause()
+    if (this.props.isPlaying) {
+      if(this.props.whichPlayer === 'Remote' ) {
+        this.props.howl.stop();
+        this.props.removeHowl();
+      }
+      this.props.setPlayer('Local')
+      this.pause()
+    }
     else this.play()
   }
 
@@ -119,12 +130,19 @@ const mapStateToProps = state => ({
   isPlaying: state.isPlaying,
   audio: state.audio,
   currentSong: state.currentSong,
+  whichPlayer: state.whichPlayer,
+  howl: state.howl,
+
 });
 
 const mapDispatchToProps = dispatch => ({
   togglePlay: bool => dispatch(toggelIsPlaying(bool)),
   setAudio: audio => dispatch(setAudio(audio)),
-  setSong: audio => dispatch(setLocalSong(audio))
+  setSong: audio => dispatch(setLocalSong(audio)),
+  setPlayer: (type) => dispatch(setLocal(type)),
+  removePlayer: () => dispatch(removePlayer()),
+  removeHowl: () => dispatch(removeHowl()),
+  setLocalTrack: (audio) => dispatch(setLocalTrack(audio))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocalPlayer);

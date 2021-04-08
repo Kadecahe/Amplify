@@ -29,7 +29,7 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlayin
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                     >
-                      <Card.Body className="m-1 d-flex flex-row align-items-center">
+                      <Card.Body className="m-1 d-flex flex-row justify-content-between align-items-center">
                         <Card.Img
                           style={{ width: '25%' }}
                           src={podcast.image}
@@ -44,10 +44,12 @@ const RemotePodcast = ({ allPodcasts, playPodcast, pausePodcast, audio, isPlayin
                           </Card.Text>
                           <Card.Text>{podcast.description}</Card.Text>
                         </div>
-                        <div>
+                        <div className="play-pause">
                             <FontAwesomeIcon
                               icon={(audio === podcast.audio) && isPlaying? faPauseCircle : faPlayCircle}
                               onClick={(audio === podcast.audio) && isPlaying ? () => pausePodcast() : () => playPodcast(podcast.audio) }
+                              className="cursor"
+                              size="2x"
                             />
 
                         </div>
