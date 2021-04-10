@@ -58,7 +58,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "start-dev": "concurrently \"npm run server\" \"npm run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
