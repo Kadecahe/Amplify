@@ -2,14 +2,20 @@ const { db } = require('./db/db');
 //Setting thee following two up for the graphQL ide
 const schema = require('./graphql/schema');
 const { ApolloServer } = require(`apollo-server-express`);
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const path = require('path');
 const morgan = require('morgan');
 const express = require('express');
 const cors = require('cors');
+const favicon = require('express-favicon')
 const app = express();
+//production mode
+
+// if(process.env.NODE_ENV === 'production') {  app.use(express.static(path.join(__dirname, 'client/build')));
+//  app.get('*', (req, res) => {    res.sendfile(path.join(__dirname = 'client/build/index.html'));  })}
 
 function createApp() {
+  app.use(favicon(path.join(__dirname, '..', '/build/favicon.ico')));
   app.use(cors());
 
   app.use(morgan('dev'));
@@ -17,10 +23,10 @@ function createApp() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  app.use(express.static(path.join(__dirname, '..', 'public')));
+  app.use(express.static(path.join(__dirname, '..', 'build')));
 
   const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: PORT, // was 3000
     credentials: true,
   };
 
@@ -31,7 +37,7 @@ function createApp() {
   app.use('/api', require('./api'));
 
   app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
   });
 
   //404 error handling
