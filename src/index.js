@@ -8,9 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import {Provider} from 'react-redux'
 import { store } from './store';
-console.log('the env port', process.env.PORT)
+
 const client = new ApolloClient({
-  uri: process.env.PORT || 'http://localhost:8080/graphql',
+  uri: 'https://amplifypodcast.herokuapp.com/' || 'http://localhost:8080/graphql',
   cache: new InMemoryCache()
 });
 
