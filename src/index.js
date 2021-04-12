@@ -10,7 +10,7 @@ import {Provider} from 'react-redux'
 import { store } from './store';
 
 const client = new ApolloClient({
-  uri: 'https://amplifypodcast.herokuapp.com' || 'http://localhost:8080/graphql',
+  uri: 'https://amplifypodcast.herokuapp.com/graphql' || 'http://localhost:8080/graphql',
   cache: new InMemoryCache()
 });
 
