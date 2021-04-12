@@ -2,9 +2,6 @@
 ## Amplify
 ---
 
-An application developed for the 2021 Onramp SiriusXM + Pandora Software Engineering Apprenticeship as a take-home project
-
-
 ## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
@@ -40,7 +37,7 @@ To get started:
 ## 🔧 Running the tests <a name = "tests"></a>
 You can check the available GraphQL API routes by visiting `https://localhost:8080/graphql`
 
-I originally began developing this application with Typescript to catch errors before running any code. However, when my mother became sick with Covid-19 during the completion of this project, I chose to split my energy between finishing out the project in Javascript to ensure that I could offer the base requirement. Typescript, while new to me for this project, was helpful in ensuring that the data I was rendering from the back end to the front was in line wiht what I expectd.
+I originally began developing this application with Typescript to catch errors before running any code. Typescript, while new to me for this project, was helpful in ensuring that the data I was rendering from the back end to the front was in line wiht what I expectd.
 
 If you would like to see how I split up tasks, there is a project board available for this app under the projects tab of this repository.
 

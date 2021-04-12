@@ -5,9 +5,7 @@ const About = () => {
     <div id="about">
       <h1>Amplify Podcasts</h1>
       <p>
-        Hi! I'm Kade Cahe, they/them/theirs pronouns. This project is my
-        submission for Onramp's Sirius XM + Pandora Software Engineering
-        Apprenticeship finalist round. You can find me on{' '}
+        Hi! I'm Kade Cahe, they/them/theirs pronouns. You can find me on{' '}
         <a
           href="https://www.linkedin.com/in/kadecahe/"
           target="_blank"
